@@ -131,7 +131,7 @@ for cp in U_cp:
     cur_cop_p0 = calcCoPmodel(T,cur_cop_dpl)
 
     # cost function
-    
+
 
     # new cur
     cur_com_v0 = cur_com_vel
@@ -146,59 +146,58 @@ for cp in U_cp:
 
 
 
-#plotting sampled points
-numSamples = 10; fNumSamples = float(numSamples)
-ptsTime = [ (float(t) * 1 / fNumSamples) for t in range(numSamples+1)]
-print ptsTime
-cop_delta0 = np.array([0.01,0,0],dtype=float)
-pos_comH = calcCoMmodel(numSamples+1,cop_delta0,ptsTime)
+# #plotting sampled points
+# numSamples = 10; fNumSamples = float(numSamples)
+# ptsTime = [ (float(t) * 1 / fNumSamples) for t in range(numSamples+1)]
+# print ptsTime
+# cop_delta0 = np.array([0.01,0,0],dtype=float)
+# pos_comH = calcCoMmodel(numSamples+1,cop_delta0,ptsTime)
 
-#display
-ps = {fr: [] for fr in frameCoMTrajNames}
-for key, p in ps.items():
-    for pos in pos_comH:
-        p.append(np.asarray(pos).reshape(-1).tolist())
-# set curve points 
-for key, p in ps.items():
-    display.robot.viewer.gui.setCurvePoints(display.frameTrajGroup + "/" + key, p)
+# #display
+# ps = {fr: [] for fr in frameCoMTrajNames}
+# for key, p in ps.items():
+#     for pos in pos_comH:
+#         p.append(np.asarray(pos).reshape(-1).tolist())
+# # set curve points 
+# for key, p in ps.items():
+#     display.robot.viewer.gui.setCurvePoints(display.frameTrajGroup + "/" + key, p)
 
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-fig = plt.figure()
+# import matplotlib.pyplot as plt
+# from mpl_toolkits.mplot3d import Axes3D
+# fig = plt.figure()
 
-ax = fig.add_subplot(111)
+# ax = fig.add_subplot(111)
 
-# Major ticks every 20, minor ticks every 5
-major_ticks = np.arange(0, 101, 20)
-minor_ticks = np.arange(0, 101, 5)
+# # Major ticks every 20, minor ticks every 5
+# major_ticks = np.arange(0, 101, 20)
+# minor_ticks = np.arange(0, 101, 5)
 
-ax.set_xticks(major_ticks)
-ax.set_xticks(minor_ticks, minor=True)
-ax.set_yticks(major_ticks)
-ax.set_yticks(minor_ticks, minor=True)
+# ax.set_xticks(major_ticks)
+# ax.set_xticks(minor_ticks, minor=True)
+# ax.set_yticks(major_ticks)
+# ax.set_yticks(minor_ticks, minor=True)
 
-# And a corresponding grid
-ax.grid(which='both')
+# # And a corresponding grid
+# ax.grid(which='both')
 
-# Or if you want different settings for the grids:
-ax.grid(which='minor', alpha=0.2)
-ax.grid(which='major', alpha=0.5)
+# # Or if you want different settings for the grids:
+# ax.grid(which='minor', alpha=0.2)
+# ax.grid(which='major', alpha=0.5)
 
-# ax.plot(pos_comH[:,0],pos_comH[:,1],0)
-# ax.scatter(pos_comH[:,0],pos_comH[:,1],0)
+# # ax.plot(pos_comH[:,0],pos_comH[:,1],0)
+# # ax.scatter(pos_comH[:,0],pos_comH[:,1],0)
 
-plt.plot(pos_comH[:,0],pos_comH[:,1])
-plt.scatter(pos_comH[:,0],pos_comH[:,1],marker='o',facecolor='red')
-for i, txt in enumerate(ptsTime):
-    ax.annotate(txt, (pos_comH[i,0], pos_comH[i,1]))
+# plt.plot(pos_comH[:,0],pos_comH[:,1])
+# plt.scatter(pos_comH[:,0],pos_comH[:,1],marker='o',facecolor='red')
+# for i, txt in enumerate(ptsTime):
+#     ax.annotate(txt, (pos_comH[i,0], pos_comH[i,1]))
 
-ax.set_xlabel('x')
-ax.set_ylabel('y')
-# ax.set_zlabel('time')
-plt.show()
+# ax.set_xlabel('x')
+# ax.set_ylabel('y')
+# # ax.set_zlabel('time')
+# plt.show()
 
-# ------------------------
-pinocchio.updateFramePlacements(anymal.model, data)
+
 
 
 
